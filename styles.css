@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 750px; /* Slightly increased height for a more square appearance */
+    width: 750px; /* Matching width to height for perfect square */
+    margin: 0 auto; /* Center the container horizontally */
+    border: 2px solid black;
+    padding: 20px; /* Adjust padding for a balanced look */
+}
+.thin-line {
+    border: 1px solid black; /* Increased border thickness for better visibility */
+    width: 150%; /* Increased width to 150% */
+    margin: 0 auto; /* Centers the line horizontally */
+    position: relative; /* Allows for vertical centering adjustments */
+    left: -25%; /* Moves the line to the left */
+    transform: translateY(-50%); /* Adjusts for the line's own height to center it vertically */
+}
+.heading {
+    letter-spacing: 2px;
+    margin-top: 50px; /* Increased margin for more space above the heading */
+    margin-bottom: 20px; /* Added margin for spacing below the heading */
+}
+.heading p {
+    font-size: .9em; /* Smaller font size for a more compact appearance */
+    color: #338fd1;
+    font-weight: 400; /* Thinner font weight for a lighter appearance */
+}
+.heading h1 {
+    margin: 0;
+    font-weight: 600; /* Medium weight for a balanced appearance */
+}
+.content {
+    line-height: 1.5; /* Increased line height for better readability */
+    margin: 5px;
+    text-align: left;
+    width: 70%;
+    font-weight: 500;
+}
+.content ol {
+    margin: 20px 0; /* Added margin for spacing */
+}
+
+.content ol li {
+    margin-bottom: 10px; /* Added spacing between list items */
+}
+.logo {
+    width: 150px; /* Sets the image width to 150px */
+    height: auto; /* Ensures the image maintains its aspect ratio */
+    margin-top: 20px; /* Added margin for spacing above the image */
+}
