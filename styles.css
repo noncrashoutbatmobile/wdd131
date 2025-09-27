@@ -15,7 +15,7 @@
 }
 
 .thin-line {
-    border: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
     /* Increased border thickness for better visibility */
     width: 150%;
     /* Increased width to 150% */
@@ -27,6 +27,9 @@
     /* Moves the line to the left */
     transform: translateY(-50%);
     /* Adjusts for the line's own height to center it vertically */
+    height: 0;
+    /* Ensure the line is visible and not collapsed */
+    background: none;
 }
 
 .heading {
