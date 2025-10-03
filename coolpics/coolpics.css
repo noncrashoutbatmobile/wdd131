@@ -65,11 +65,13 @@ img {
 }
 
 #menu {
-    display: none;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #main-nav {
-    display: none;
+    display: block;
 }
 
 @media screen and (max-width: 800px) {
@@ -77,6 +79,7 @@ img {
         display: inline-block;
     }
 }
+
 
 @media screen and (min-width: 800px) {
     #main-nav {
@@ -129,5 +132,22 @@ input[type="submit"]:hover {
 @media screen and (max-width: 500px) {
     .gallery {
         grid-template-columns: 1fr;
+    }
+
+    #main-nav {
+        display: block;
+        flex-direction: column;
+    }
+
+    #main-nav a {
+        display: block;
+        margin: 0.5em 0;
+        text-align: center;
+    }
+
+    #menu {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
