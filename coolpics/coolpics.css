@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=family=Mooli&display=swap");
+
+:root {
+    --primary-color: #52489c;
+    --secondary-color: #59c3c3;
+    --accent-color: #f3f3f3;
+    --text-dark: #333;
+    --text-light: #ebebeb;
+    --primary-font: Arial, Helvetica, sans-serif;
+    --secondary-font: Mooli, san-serif;
+}
+
+body {
+    font-family: var(--primary-font);
+    font-size: 1.2em;
+}
+
+a:link,
+a:visited {
+    color: var(--accent-color);
+}
+
+header,
+footer {
+    background: var(--primary-color);
+    color: var(--text-light);
+    font-family: var(--secondary-font);
+    text-align: center;
+    padding: 1rem;
+}
+
+footer {
+    font-size: 0.8em;
+    text-align: left;
+}
+
+main {
+    padding: 2rem;
+}
+
+img {
+    max-height: 250px;
+    max-width: 250px;
+    object-fit: cover;
+    /* Remove grid properties from img */
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.gallery img {
+    max-height: 250px;
+    max-width: 250px;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#menu {
+    display: none;
+}
+
+#main-nav {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    #menu {
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #main-nav {
+        display: block;
+    }
+
+    #menu {
+        display: none;
+    }
+}
+
+.gallery-title {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+button,
+.btn,
+input[type="button"],
+input[type="submit"] {
+    font-family: inherit;
+    font-size: 1.17em;
+    /* h3 default size */
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    /* Optional: add transition for hover effect */
+    transition: color 0.2s;
+}
+
+button:hover,
+.btn:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    color: var(--accent-color);
+}
+
+@media screen and (max-width: 800px) {
+    .gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
