@@ -10,6 +10,8 @@
     --secondary-font: Mooli, san-serif;
 }
 
+
+
 body {
     font-family: var(--primary-font);
     font-size: 1.2em;
@@ -70,24 +72,70 @@ img {
     margin-right: auto;
 }
 
+/* Hidden by default */
 #main-nav {
+    display: none;
+    text-align: center;
+}
+
+/* Visible only when toggled */
+#main-nav.show {
     display: block;
 }
 
-@media screen and (max-width: 800px) {
-    #menu {
+/* Desktop/tablet layout */
+@media screen and (min-width: 600px) {
+    #main-nav.show a {
         display: inline-block;
+        margin: 0 1rem;
+        padding: 0.5rem 0;
+        color: var(--text-light);
+    }
+
+    #main-nav.show a:hover {
+        color: var(--accent-color);
     }
 }
 
-
-@media screen and (min-width: 800px) {
-    #main-nav {
-        display: block;
+/* Mobile layout */
+@media screen and (max-width: 599px) {
+    #main-nav.show {
+        text-align: center;
     }
 
+    #main-nav.show a {
+        display: block;
+        margin: 0.5em 0;
+        color: var(--text-light);
+    }
+
+    #main-nav.show a:hover {
+        color: var(--accent-color);
+    }
+}
+
+/* Large screens (≥1000px): always show nav, hide toggle button */
+@media screen and (min-width: 1000px) {
     #menu {
         display: none;
+        /* no toggle button on big screens */
+    }
+
+    #main-nav {
+        display: block !important;
+        /* force visible */
+    }
+
+    /* optional: keep links inline */
+    #main-nav a {
+        display: inline-block;
+        margin: 0 1rem;
+        padding: 0.5rem 0;
+        color: var(--text-light);
+    }
+
+    #main-nav a:hover {
+        color: var(--accent-color);
     }
 }
 
@@ -134,20 +182,44 @@ input[type="submit"]:hover {
         grid-template-columns: 1fr;
     }
 
-    #main-nav {
-        display: block;
-        flex-direction: column;
-    }
+}
 
-    #main-nav a {
-        display: block;
-        margin: 0.5em 0;
-        text-align: center;
-    }
+/* === Modal Styles === */
+/* Modal dialog fills the viewport and centers content */
+#image-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10;
 
-    #menu {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    display: flex;
+    /* enable flexbox */
+    justify-content: center;
+    /* horizontal center */
+    align-items: center;
+    /* vertical center */
+}
+
+/* Image scales but stays contained */
+#image-viewer img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* Close button in top-right corner of dialog */
+#image-viewer .close-viewer {
+    position: absolute;
+    top: 2vh;
+    right: 5%;
+    background: #fff;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.5em 0.8em;
+    cursor: pointer;
+    border-radius: 50%;
 }
