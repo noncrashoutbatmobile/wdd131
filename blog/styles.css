@@ -1,0 +1,144 @@
+/* Keep navbar inline */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    font-family: "Playfair Display", serif;
+    flex-wrap: nowrap;
+    /* never wrap */
+}
+
+/* Navbar title on the left */
+.navbar-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 2.2rem;
+}
+
+/* Right-side container */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+    /* pushes this whole container to the right */
+}
+
+
+/* Logo */
+.navbar-logo {
+    width: 101px;
+    /* max size */
+    height: auto;
+    flex-shrink: 0;
+    /* logo doesn’t shrink */
+}
+
+/* Nav links */
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 1;
+    /* allow links to shrink if needed */
+    text-align: right;
+}
+
+/* Nav link text */
+.navbar-links li a {
+    text-decoration: none;
+    color: #000;
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    /* medium */
+    font-size: 20px;
+    /* base font size */
+    white-space: nowrap;
+    /* prevent text from breaking */
+}
+
+/* Shrink font & spacing on smaller screens */
+@media (max-width: 1024px) {
+    .navbar-links li a {
+        font-size: 18px;
+    }
+
+    .navbar-right {
+        gap: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-links li a {
+        font-size: 16px;
+    }
+
+    .navbar-right {
+        gap: 0.5rem;
+    }
+
+    .navbar-logo {
+        width: 80px;
+    }
+}
+
+.navbar-hamburger {
+    display: none;
+    /* Hidden by default */
+    flex-shrink: 0;
+    /* Prevent shrinking */
+}
+
+/* Show hamburger on small screens */
+@media (max-width: 646px) {
+    .navbar-hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+
+    .navbar-links {
+        display: none;
+        /* Hide links by default */
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 20%;
+        right: 20%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1000;
+    }
+}
+
+.navbar-links.active {
+    display: flex;
+    /* Show links when active */
+    flex-direction: column;
+    text-decoration: underline;
+}
+
+/* Hero section */
+.playfair-display-hero h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    margin-left: 2rem;
+    max-width: 400px;
+
+}
+
+.subheading p {
+    font-size: 1rem;
+    font-family: "Playfair Display", serif;
+    max-width: 400px;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    line-height: 1.5;
+}
