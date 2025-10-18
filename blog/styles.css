@@ -179,13 +179,13 @@
 }
 
 /* Text container on left */
-.hero-container {
+/* .hero-container {
     z-index: 2;
     width: clamp(300px, 60vw, 600px);
-    /* fluid width */
+  
     padding: 2rem;
     box-sizing: border-box;
-}
+} */
 
 /* Pattern on right, filling 80-90% */
 .hero-pattern {
@@ -262,7 +262,7 @@ main {
     padding: 2rem;
     box-sizing: border-box;
     overflow-y: auto;
-    max-height: 53rem;
+    max-height: 56rem;
 }
 
 .book-list {
