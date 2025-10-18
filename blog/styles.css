@@ -321,7 +321,8 @@ main {
     transform-style: preserve-3d;
 }
 
-.book-item:hover .book-inner {
+.book-item:hover .book-inner,
+.book-inner.flipped {
     transform: rotateY(180deg);
 
 }

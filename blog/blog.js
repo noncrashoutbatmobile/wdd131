@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   articles.forEach(article => {
     const bookItem = document.createElement('div');
     bookItem.classList.add('book-item', 'static-card');
-
+    bookItem.setAttribute('tabindex', '0');
     bookItem.innerHTML = `
       <h3 class="book-title">${article.title}</h3>
       <img src="${article.imgSrc}" alt="${article.imgAlt}" class="book-image">
@@ -57,5 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     bookList.appendChild(bookItem);
+  });
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const flipCards = document.querySelectorAll('.book-item');
+
+  flipCards.forEach(card => {
+    card.addEventListener('keydown', (e) => {
+      // Flip on Enter or Space key
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault(); // prevent scrolling with Space
+        card.querySelector('.book-inner').classList.toggle('flipped');
+      }
+    });
   });
 });
