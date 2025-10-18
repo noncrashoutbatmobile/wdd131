@@ -60,11 +60,24 @@
 }
 
 .skiptocontent a {
+    position: absolute;
+    top: -40px;
+    left: 0;
     font-family: "Playfair Display", serif;
     font-weight: 400;
-    font-size: clamp(10px, .8vw, 12px);
+    font-size: clamp(12px, 1vw, 14px);
     color: #000;
     text-decoration: underline;
+}
+
+.skiptocontent a:focus {
+    top: 10px;
+    left: 10px;
+    background-color: #fff;
+    padding: 8px 12px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    z-index: 1000;
 }
 
 /* Hamburger icon (hidden by default) */

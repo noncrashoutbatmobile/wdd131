@@ -126,3 +126,19 @@
 .read-more:hover {
     text-decoration: underline;
 }
+
+.skiptocontent a {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #fff;
+    color: #AF1B3F;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.skiptocontent a:focus {
+    top: 0;
+}
