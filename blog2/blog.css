@@ -42,6 +42,10 @@
     color: #af1b3f;
 }
 
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
 
 /* Main layout: book list on left, sidebar on right */
 .main-layout {
