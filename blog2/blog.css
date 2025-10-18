@@ -1,0 +1,128 @@
+/* Title centered at top */
+.site-title {
+    text-align: center;
+    font-family: "Lora", Impact, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #473144;
+    margin: 2rem 0 1rem 0;
+    font-weight: 500;
+
+}
+
+/* Wrapper for nav and lines */
+.nav-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    /* padding: 0 2rem; */
+}
+
+/* Gold lines */
+.nav-line {
+    border: none;
+    height: 2px;
+    background-color: #EFC69B;
+    margin: .5rem 0;
+    width: 100%;
+}
+
+/* Navigation links */
+.site-nav ul {
+    display: grid;
+    grid-template-columns: 80px 80px 80px;
+    justify-content: end;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+}
+
+.site-nav a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: #af1b3f;
+}
+
+
+/* Main layout: book list on left, sidebar on right */
+.main-layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    align-items: start;
+}
+
+/* Book list stays vertical */
+.book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Each book block: metadata + review side by side */
+.book-block {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+    align-items: start;
+    padding-left: 0;
+    align-items: center;
+}
+
+.book-review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.book-review h2 {
+    color: #AF1B3F;
+    /* red */
+    font-family: "Lora", Impact, serif;
+    font-size: clamp(1.5rem, 2vw, 2rem);
+    margin-bottom: 0.5rem;
+    text-align: left;
+
+}
+
+
+/* Book review image */
+.book-review img {
+    max-width: 200px;
+    display: block;
+    margin-bottom: 1rem;
+
+}
+
+/* Sidebar: clean and minimal */
+.right-sidebar {
+    padding: 0;
+    font-size: 1rem;
+    background: none;
+    border: 1.5px solid #EFC69B;
+    border-radius: 0;
+    height: 100%;
+}
+
+.book-meta {
+    border-right: 1px solid #EFC69B;
+    padding-right: 1rem;
+    height: 100%;
+}
+
+.read-more {
+    color: #AF1B3F;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
