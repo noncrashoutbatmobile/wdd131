@@ -84,7 +84,7 @@ img {
 }
 
 /* Desktop/tablet layout */
-@media screen and (min-width: 600px) {
+/* @media screen and (min-width: 600px) {
     #main-nav.show a {
         display: inline-block;
         margin: 0 1rem;
@@ -95,10 +95,10 @@ img {
     #main-nav.show a:hover {
         color: var(--accent-color);
     }
-}
+} */
 
 /* Mobile layout */
-@media screen and (max-width: 599px) {
+/* @media screen and (max-width: 599px) {
     #main-nav.show {
         text-align: center;
     }
@@ -112,21 +112,21 @@ img {
     #main-nav.show a:hover {
         color: var(--accent-color);
     }
-}
+} */
 
-/* Large screens (≥1000px): always show nav, hide toggle button */
+
 @media screen and (min-width: 1000px) {
     #menu {
         display: none;
-        /* no toggle button on big screens */
+
     }
 
     #main-nav {
         display: block !important;
-        /* force visible */
+
     }
 
-    /* optional: keep links inline */
+
     #main-nav a {
         display: inline-block;
         margin: 0 1rem;
@@ -171,7 +171,7 @@ input[type="submit"]:hover {
     color: var(--accent-color);
 }
 
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
     .gallery {
         grid-template-columns: 1fr 1fr;
     }
@@ -182,7 +182,7 @@ input[type="submit"]:hover {
         grid-template-columns: 1fr;
     }
 
-}
+} */
 
 /* === Modal Styles === */
 /* Modal dialog fills the viewport and centers content */
