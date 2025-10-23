@@ -23,31 +23,56 @@ const articles = [
 		ages: '12-16',
 		genre: 'Fantasy',
 		stars: '⭐⭐⭐⭐'
-	}
-]
+	},
+	{
+id: 3,
+title: "Belgariad Book One: Pawn of Prophecy",
+date: "Feb 12, 2022",
+description:
+"A fierce dispute among the Gods and the theft of a powerful Orb leaves the World divided into five kingdoms. Young Garion, with his 'Aunt Pol' and an elderly man calling himself Wolf --a father and daughter granted near-immortality by one of the Gods -- set out on a complex mission.",
+imgSrc:
+"https://images-na.ssl-images-amazon.com/images/I/41ZxXA+nInL.jpg",
+imgAlt: "Book cover for Pawn of Prophecy",
+ages: "12-16",
+genre: "Fantasy",
+stars: "⭐⭐⭐⭐⭐"
+}
+];
+
 const bookList = document.getElementById("book-list");
 
-articles.forEach(article => {
-  const bookBlock = document.createElement("div");
-  bookBlock.classList.add("book-block");
+// render all articles dynamically
+function renderArticles(items) {
+	bookList.innerHTML = ""; // clear any existing content
+	items.forEach(item => {
+		// create a semantic article element and add the class used by CSS
+		const articleEl = document.createElement("article");
+		articleEl.className = "book-block";
 
-  bookBlock.innerHTML = `
-    <aside class="book-meta">
-      <p><strong>Date:</strong> ${article.date}</p>
-      <p><strong>Ages:</strong> ${article.ages}</p>
-      <p><strong>Genre:</strong> ${article.genre}</p>
-      <p><strong>Rating:</strong> ${article.stars}</p>
-    </aside>
+		// template literal for the article's inner HTML
+		articleEl.innerHTML = `
+			<aside class="book-meta">
+				<p class="date">${item.date}</p>
+				<p>${item.ages}</p>
+				<p>${item.genre}</p>
+				<p>${item.stars}</p>
+			</aside>
 
-    <article class="book-review">
-      <h2>${article.title}</h2>
-      <img src="${article.imgSrc}" alt="${article.imgAlt}">
-      <p>${article.description}
-      <a href="#" class="read-more">Read More...</a>
-      </p>
-    </article>
-  `;
+			<div class="book-review">
+				<h2>${item.title}</h2>
+				<img src="${item.imgSrc}" alt="${item.imgAlt}">
+				<p>
+					${item.description}
+					<a href="#" class="read-more">Read More...</a>
+				</p>
+			</div>
+		`;
 
-  bookList.appendChild(bookBlock);
-});
+		// append to the output container
+		bookList.appendChild(articleEl);
+	});
+}
+
+// initial render
+renderArticles(articles);
 
