@@ -262,20 +262,24 @@ main {
     /* margin-top: 2rem; */
     margin-top: -0.47rem;
     /* z-index: 1; */
+    overflow-y: auto;
+    max-height: 56rem;
 
 
 }
 
 .content-container {
     width: 100vw;
-    /* occupies 75% of viewport width */
-    margin-left: 15vw;
-    margin-right: 7vw;
-    /* offset to start after sidebar/vertical divider */
+    margin: 0 auto;
+    /* center the content area */
     padding: 2rem;
     box-sizing: border-box;
-    overflow-y: auto;
-    max-height: 56rem;
+    max-width: 520px;
+    /* widened a smidgen from 440px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* center book-list and its cards */
 }
 
 .book-list {
@@ -283,8 +287,12 @@ main {
     flex-direction: column;
     gap: 2rem;
     text-align: center;
-
-    /* space between books */
+    width: 100%;
+    /* make list fill the content container */
+    align-items: center;
+    /* center child cards horizontally */
+    max-width: 100%;
+    /* allow full use of container */
 }
 
 .book-list img {
@@ -314,8 +322,8 @@ main {
         0 4px 6px rgba(0, 0, 0, 0.2),
         0 12px 28px rgba(0, 0, 0, 0.3);
     z-index: 1;
-    width: 100%;
-    min-height: clamp(300px, 210vh, 700px);
+    width: 93%;
+    min-height: clamp(730px, 120vh, 500px);
     /* ensures enough space for flip card to extend */
     display: flex;
     /* new: allows vertical centering of content */
@@ -417,9 +425,10 @@ main {
 
 .sidebar {
     width: 25vw;
-    padding: 2rem;
+    padding: 5rem;
     box-sizing: border-box;
     position: relative;
+
 }
 
 /* .content-container {
