@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Credit Card Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Secure and stylish credit card payment interface for online purchases." />
+  <meta name="author" content="Joshua"/>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="stylesheet" href="credit-card.css" />
+  <!-- <script src="credit-card.js" defer></script> -->
+</head>
+
+<body>
+<div id="card-success" class="hidden">
+  <i class="fa fa-check"></i>
+  <p>Payment Successful!</p>
+</div>
+<div id="form-errors" class="hidden">
+  <i class="fa fa-exclamation-triangle"></i>
+  <p id="card-error">Card error</p>
+</div>
+
+<div id="form-container">
+  <!-- Card Preview -->
+  <div id="card-preview">
+    <div class="card-logo">VISA</div>
+    <div class="preview-number">**** **** **** ****</div>
+    <div class="preview-chip"></div>
+    <div class="preview-name">FULL NAME</div>
+    <div class="preview-expiry">MM/YY</div>
+  </div>
+
+  <!-- Form Box -->
+  <div id="form-box">
+    <form id="card-form">
+      <label for="card-number">Card Number</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" />
+
+      <label for="card-holder">Card Holder</label>
+      <input type="text" id="card-holder" placeholder="e.g. Ethan Miller" />
+
+      <label for="card-expiry">Expiration Date</label>
+      <div class="expiry-fields">
+        <select id="card-month">
+          <option value="">MM</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+        <select id="card-year">
+          <option value="">YY</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            <option value="32">32</option>
+            <option value="33">33</option>
+            <option value="34">34</option>
+            <option value="35">35</option>
+            <option value="36">36</option>
+
+        </select>
+      </div>
+
+      <label for="card-cvc">CVV</label>
+      <input type="text" id="card-cvc" placeholder="123" />
+
+      <button id="card-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
