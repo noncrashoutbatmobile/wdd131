@@ -1,4 +1,3 @@
-
 // Grab the input fields
 const cardNumberInput = document.getElementById('card-number');
 const cardHolderInput = document.getElementById('card-holder');
@@ -10,13 +9,38 @@ const cardCvcInput = document.getElementById('card-cvc');
 const previewNumber = document.querySelector('.preview-number');
 const previewName = document.querySelector('.preview-name');
 const previewExpiry = document.querySelector('.preview-expiry');
+const cardLogo = document.querySelector('.card-logo');
 
-// Update card number live
+// Update card number live (with AMEX detection)
 cardNumberInput.addEventListener('input', () => {
   let value = cardNumberInput.value.replace(/\D/g, ''); // remove non-digits
-  // Format as XXXX XXXX XXXX XXXX
-  value = value.match(/.{1,4}/g)?.join(' ') || '';
-  previewNumber.textContent = value || '**** **** **** ****';
+  let formatted = '';
+
+  // Detect card type
+  let type = '';
+  if (value.startsWith('4')) {
+    type = 'VISA';
+  } else if (/^5[1-5]/.test(value) || /^2(2[2-9]|[3-7][0-9])/.test(value)) {
+    type = 'MASTERCARD';
+  } else if (/^3[47]/.test(value)) {
+    type = 'AMEX';
+  }
+
+  // Apply formatting based on type
+  if (type === 'AMEX') {
+    formatted = value
+      .replace(/^(\d{0,4})(\d{0,6})(\d{0,5}).*/, (m, g1, g2, g3) =>
+        [g1, g2, g3].filter(Boolean).join(' ')
+      );
+  } else {
+    formatted = value
+      .replace(/(\d{4})(?=\d)/g, '$1 ')
+      .trim();
+  }
+
+  cardLogo.textContent = type;
+  previewNumber.textContent = formatted || '**** **** **** ****';
+  cardNumberInput.value = formatted; // keep it formatted in input
 });
 
 // Update cardholder live
@@ -37,18 +61,3 @@ function updateExpiry() {
 
 cardMonthInput.addEventListener('input', updateExpiry);
 cardYearInput.addEventListener('input', updateExpiry);
-const cardLogo = document.querySelector('.card-logo');
-
-cardNumberInput.addEventListener('input', () => {
-  const number = cardNumberInput.value.replace(/\s/g, '');
-  
-  if (number.startsWith('4')) {
-    cardLogo.textContent = 'VISA';
-  } else if (/^5[1-5]/.test(number) || /^2(2[2-9]|[3-7][0-9])/.test(number)) {
-    cardLogo.textContent = 'MASTERCARD';
-  } else if (/^3[47]/.test(number)) {
-    cardLogo.textContent = 'AMEX';
-  } else {
-    cardLogo.textContent = ''; // unknown or blank
-  }
-});

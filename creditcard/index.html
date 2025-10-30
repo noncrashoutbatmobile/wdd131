@@ -8,7 +8,7 @@
   <meta name="author" content="Joshua"/>
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="credit-card.css" />
-  <!-- <script src="credit-card.js" defer></script> -->
+  <script src="credit-card.js" defer></script>
 </head>
 
 <body>
@@ -32,57 +32,80 @@
   </div>
 
   <!-- Form Box -->
-  <div id="form-box">
-    <form id="card-form">
-      <label for="card-number">Card Number</label>
-      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" />
+<div id="form-box">
+  <form id="card-form">
+    <label for="card-number">Card Number</label>
+    <input 
+      type="text" 
+      id="card-number" 
+      placeholder="1234 5678 9012 3456" 
+      inputmode="numeric"
+      maxlength="19"
+      pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}"
+      required 
+    />
 
-      <label for="card-holder">Card Holder</label>
-      <input type="text" id="card-holder" placeholder="e.g. Ethan Miller" />
+    <label for="card-holder">Card Holder</label>
+    <input 
+      type="text" 
+      id="card-holder" 
+      placeholder="e.g. Ethan Miller"
+      pattern="[A-Za-z\s]{2,}"
+      title="Enter full name (letters only)"
+      required 
+    />
 
-      <label for="card-expiry">Expiration Date</label>
-      <div class="expiry-fields">
-        <select id="card-month">
-          <option value="">MM</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-        <select id="card-year">
-          <option value="">YY</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-            <option value="32">32</option>
-            <option value="33">33</option>
-            <option value="34">34</option>
-            <option value="35">35</option>
-            <option value="36">36</option>
+    <label for="card-expiry">Expiration Date</label>
+    <div class="expiry-fields">
+      <select id="card-month" required>
+        <option value="">MM</option>
+        <option value="01">01</option>
+        <option value="02">02</option>
+        <option value="03">03</option>
+        <option value="04">04</option>
+        <option value="05">05</option>
+        <option value="06">06</option>
+        <option value="07">07</option>
+        <option value="08">08</option>
+        <option value="09">09</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
 
-        </select>
-      </div>
+      <select id="card-year" required>
+        <option value="">YY</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+      </select>
+    </div>
 
-      <label for="card-cvc">CVV</label>
-      <input type="text" id="card-cvc" placeholder="123" />
+    <label for="card-cvc">CVV</label>
+    <input 
+      type="text" 
+      id="card-cvc" 
+      placeholder="123"
+      inputmode="numeric"
+      pattern="\d{3,4}"
+      maxlength="4"
+      required 
+    />
 
-      <button id="card-btn">Submit</button>
-    </form>
-  </div>
+    <button id="card-btn" type="submit">Submit</button>
+  </form>
 </div>
+
 
 </body>
 </html>
