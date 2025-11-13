@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap');
+
+header h1, .recipe h2, input::placeholder, textarea::placeholder {
+  font-family: 'The Girl Next Door', cursive;
+}
+
+body,
+p,
+li,
+ol,
+ul,
+h3, h4, h5, h6,
+input:not(.search-input),
+textarea,
+select,
+button,
+a {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding-bottom: 10px;
+    border-bottom: grey 2px solid;
+    width: auto;
+
+}
+
+header img {
+    height: 100px;
+    margin-right: 20px;
+}
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.skiptocontent a {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #fff;
+    color: #AF1B3F;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 1000;
+}
+
+.skiptocontent a:focus {
+    top: 0;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* max-width: 300px; */
+  margin: 1rem auto;
+  background-color: #fdf6f0;
+  /* border-radius: 8px; */
+  border: 1px solid #d8cfc4;
+  overflow: hidden;
+  height: 30px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0 0.5rem;
+  border: none;
+  font-size: 0.75rem;
+  font-family: 'The Girl Next Door', cursive;
+  font-weight: 900;
+  background-color: transparent;
+  color: #212020;
+  height: 100%;
+  font-size: 1em;
+}
+
+.search-input::placeholder {
+  color: #6d6d6d;
+  font-weight: 900;
+  font-size: 1em;
+  margin-top: 10px;
+
+}
+
+.search-button {
+  background-color: #c2b8ae;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 5dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #f99cba;
+}
+
+.search-icon {
+  height: 15px;
+  width: 15px;
+  margin-right: -1px;
+  object-fit: contain;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #d8cfc4;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #fdf6f0;
+    align-items: flex-start;
+    height: auto;
+}
+.recipe h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+.description {
+    visibility: hidden;
+}
+.tags {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
+    border: #212020 2px solid;
+    border-radius: 8px;
+    padding: 2px 6px;
+    margin-right: 5px;
+    width: fit-content;
+}
+
+.recipe img {
+    border-radius: 8px;
+    max-width: 100%;
+    
+    height: auto;
+}
+
+@media screen and (min-width: 600px) {
+    .recipe {
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .recipe img {
+        max-width: 300px;
+    }
+
+    .recipe-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .description {
+        visibility: visible;
+        font-size: 1.2rem;
+        color: #333;
+        margin-top: 3rem;
+    }
+    .tags {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #000000;
+        border: #212020 2px solid;
+        border-radius: 8px;
+        padding: 2px 6px;
+        margin-right: 5px;
+        width: fit-content;
+    }
+}
+footer {
+    display: flex;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-top: grey 2px solid;
+    font-size: 0.9rem;
+    color: #666;
+
+}
+.social {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    align-items: center;
+}
+.social img {  
+    height: 40px;  
+}
+@media screen and (min-width: 844px) {
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Optional: adds horizontal breathing room */
+  }
+}
