@@ -76,7 +76,9 @@ header img {
   background-color: transparent;
   color: #212020;
   height: 100%;
-  font-size: 1em;
+  font-size: 1rem;
+  min-height: 48px;
+  padding: 12px 16px;
 }
 
 .search-input::placeholder {
@@ -88,16 +90,20 @@ header img {
 }
 
 .search-button {
-  background-color: #c2b8ae;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  height: 100%;
-  width: 5dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
+    background-color: #c2b8ae;
+    border: none;
+  /* padding: 0; */
+    cursor: pointer;
+    height: 100%;
+    width: 5dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px;
+
 }
 
 .search-button:hover {
