@@ -1,107 +1,114 @@
 import recipes from "./recipes.mjs";
-import { initCookMode } from './wakeLock.js';
+
 function random(num) {
-return Math.floor(Math.random() * num);
+    return Math.floor(Math.random() * num);
 }
+
 function escapeHtml(str = '') {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-function getRandomListEntry(list) {
-    const listLength = list.length;
-    const randomNum = random(listLength);
-    return list[randomNum];
-}
-
-
-function recipeTemplate(recipe, index) {
-    // Produce the same structure + classes used by the static HTML
-    const tagsText = Array.isArray(recipe.tags) ? recipe.tags.join(', ') : (recipe.tags || '');
-        const titleId = `recipe-title-${index}`;
-        const descId = `recipe-desc-${index}`;
-        return `<section id="maincontent" class="recipe" role="article" aria-labelledby="${titleId}">
-    <a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}"><img src="${escapeHtml(recipe.image || './images/default.jpg')}" alt="${escapeHtml(recipe.name || '404: Image Not Found')}" /></a>
-    <div class="recipe-content">
-        <p class="tags">${escapeHtml(tagsText)}</p>
-        <h2 id="${titleId}"><a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}">${escapeHtml(recipe.name || '404: Name Not Found')}</a></h2>
-        ${ratingTemplate(recipe.rating || 0)}
-        <p id="${descId}" class="description">${escapeHtml(recipe.description || '404: Description Not Found')}</p>
-    </div>
-</section>`;
-}
-function tagsTemplate(tags) {
-    // kept for backward compatibility but the main template now renders tags as text
-    const safeTags = Array.isArray(tags) ? tags : [];
-    return safeTags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("");
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
 function ratingTemplate(rating) {
-    // Build rating HTML to match the static file's structure
     const safeRating = Number.isFinite(Number(rating)) ? Number(rating) : 0;
     let html = `<div class="rating" role="img" aria-label="${safeRating} out of 5 stars">`;
     for (let i = 1; i <= 5; i++) {
-        if (i <= safeRating) {
-            html += `<span aria-hidden="true">★</span>`;
-        } else {
-            html += `<span aria-hidden="true">☆</span>`;
-        }
+        html += i <= safeRating ? `<span aria-hidden="true">★</span>` : `<span aria-hidden="true">☆</span>`;
     }
     html += `</div>`;
     return html;
 }
-function renderRecipe(recipeList, offset = 0) {
-    // Try to replace the existing #maincontent section (static HTML) so layout/classes match exactly
-    const recipeHtmlArray = recipeList.map((recipe, i) => recipeTemplate(recipe, offset + i));
-    const html = recipeHtmlArray.join("");
 
-    const existingMain = document.getElementById('maincontent');
-    if (existingMain) {
-        // Replace the whole section so id/classes remain the same
-        existingMain.outerHTML = html;
-        // After replacing, move keyboard focus to the new recipe heading for screen-reader/keyboard users
-        const newMain = document.getElementById('maincontent');
-        if (newMain) {
-            const heading = newMain.querySelector('h2');
-            if (heading) {
-                heading.tabIndex = -1; // make focusable
-                heading.focus();
-            }
-        }
+function highlightMatches(text, query) {
+    if (!query) return escapeHtml(text);
+    const re = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'ig');
+    return escapeHtml(text).replace(re, match => `<mark>${match}</mark>`);
+}
+
+function recipeTemplate(recipe, index, query = '') {
+    const tagsText = Array.isArray(recipe.tags) ? recipe.tags.join(', ') : (recipe.tags || '');
+    return `<section class="recipe">
+        <a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}">
+            <img src="${escapeHtml(recipe.image || './images/default.jpg')}" alt="${escapeHtml(recipe.name || '404: Image Not Found')}" />
+        </a>
+        <div class="recipe-content">
+            <p class="tags">${highlightMatches(tagsText, query)}</p>
+            <h2><a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}">
+                ${highlightMatches(recipe.name || '404: Name Not Found', query)}
+            </a></h2>
+            ${ratingTemplate(recipe.rating || 0)}
+            <p class="description">${highlightMatches(recipe.description || '404: Description Not Found', query)}</p>
+        </div>
+    </section>`;
+}
+
+function renderRecipes(recipeList, query = '') {
+    const main = document.querySelector('main.container');
+    if (!main) return;
+    main.innerHTML = recipeList.map((r, i) => recipeTemplate(r.recipe, r.index, query)).join('');
+}
+
+function searchHandler(event) {
+    event.preventDefault();
+
+    const input = document.querySelector('.search-input');
+    const query = input ? input.value.trim() : '';
+    if (!query) return;
+
+    // Check if we're on recipe.html
+    if (window.location.pathname.includes('recipe.html')) {
+        const proceed = confirm("You're about to return to the main page. Are you sure you wish to proceed?");
+        if (!proceed) return;
+
+        // Redirect to main page with query param
+        window.location.href = `index.html?search=${encodeURIComponent(query)}`;
         return;
     }
 
-    // Fallback: insert into the main container
-    const mainContainer = document.querySelector('main.container');
-    if (!mainContainer) {
-        console.warn('renderRecipe: could not find target to render recipes.');
-        return;
-    }
-    mainContainer.innerHTML = html;
-    // ensure keyboard focus lands on the recipe heading when injected
-    const newMain = document.getElementById('maincontent');
-    if (newMain) {
-        const heading = newMain.querySelector('h2');
-        if (heading) {
-            heading.tabIndex = -1;
-            heading.focus();
-        }
+    // Perform search
+    const results = recipes
+        .map((r, i) => ({ recipe: r, index: i }))
+        .filter(({ recipe }) => {
+            const hay = [
+                recipe.name?.toLowerCase() || '',
+                recipe.description?.toLowerCase() || '',
+                Array.isArray(recipe.tags) ? recipe.tags.join(' ').toLowerCase() : ''
+            ].join(' ');
+            return hay.includes(query.toLowerCase());
+        });
+
+    if (results.length === 0) {
+        renderRecipes([{ recipe: { name: 'No results found', description: '', tags: [], rating: 0 }, index: 0 }], query);
+    } else {
+        renderRecipes(results, query);
     }
 }
+
 function init() {
-    // get a random recipe index so links point to the correct recipe in recipes.mjs
-    const idx = random(recipes.length);
-    const recipe = recipes[idx];
-    // render the recipe and provide the original index as offset
-    renderRecipe([recipe], idx);
-    // initialize cook mode toggle (wake lock)
-    try {
-        initCookMode();
-    } catch (err) {
-        console.warn('initCookMode failed', err);
+    const input = document.querySelector('.search-input');
+    const button = document.querySelector('.search-button');
+
+    // Clear search on load
+    if (input) input.value = '';
+
+    // Handle query param from redirect
+    const params = new URLSearchParams(window.location.search);
+    const queryParam = params.get('search');
+    if (queryParam) {
+        if (input) input.value = queryParam;
+        searchHandler({ preventDefault: () => {} });
+    } else {
+        // Show 1 random recipe on fresh load
+        const idx = random(recipes.length);
+        renderRecipes([{ recipe: recipes[idx], index: idx }]);
     }
+
+    if (button) button.addEventListener('click', searchHandler);
+    if (input) input.addEventListener('keydown', (e) => { if (e.key === 'Enter') searchHandler(e); });
 }
+
 init();
