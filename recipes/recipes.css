@@ -4,6 +4,19 @@ header h1, .recipe h2, input::placeholder, textarea::placeholder {
   font-family: 'The Girl Next Door', cursive;
 }
 
+/* Ensure recipe title links use the same decorative font as h2 */
+.recipe h2 a {
+  font-family: 'The Girl Next Door', cursive;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Improve link discoverability while preserving the decorative style */
+.recipe h2 a:hover,
+.recipe h2 a:focus-visible {
+  text-decoration: underline;
+}
+
 body,
 p,
 li,
@@ -117,6 +130,27 @@ header img {
   object-fit: contain;
 }
 
+.cookmode-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 8px;
+}
+
+.cookmode-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+#cook-mode-toggle {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+#cook-mode-toggle[data-supported="false"] {
+  opacity: 0.6;
+}
+
 .recipe {
     display: flex;
     flex-direction: column;
@@ -148,10 +182,12 @@ header img {
 }
 
 .recipe img {
-    border-radius: 8px;
-    max-width: 100%;
-    
-    height: auto;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;    /* centers horizontally in both block and flex layouts */
+  align-self: center; /* helpful when .recipe is column-flex */
 }
 
 @media screen and (min-width: 600px) {

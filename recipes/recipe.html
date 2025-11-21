@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Detail</title>
+    <link rel="stylesheet" href="recipes.css">
+    <script src="recipe.js" type="module" defer></script>
+    <link rel="icon" href="images/favicon-icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header-box">
+        <div class="skiptocontent">
+            <a href="#maincontent">Skip to main content</a>
+        </div>
+        <div class="title-container">
+            <img src="images/recipe-book.png" alt="recipe book icon">
+            <h1>RecipeBook</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Find a recipe . . ." class="search-input">
+            <button class="search-button">
+                <img src="images/search.svg"  class="search-icon" alt="search icon">
+            </button>
+        </div>
+       
+    </header>
+
+    <main class="container">
+         <div class="cookmode-container">
+            <label class="cookmode-label" for="cook-mode-toggle">Cook Mode</label>
+            <input id="cook-mode-toggle" type="checkbox" aria-label="Toggle cook mode" />
+        </div>
+        <!-- The recipe details will be rendered into this section by recipe.js -->
+        <section id="maincontent" class="recipe">
+            <img src="./images/default.jpg" alt="Recipe image" />
+            <div class="recipe-content">
+                <p class="tags"></p>
+                <h2></h2>
+                <div class="rating" role="img" aria-label="0 out of 5 stars">
+                    <span aria-hidden="true">☆</span>
+                    <span aria-hidden="true">☆</span>
+                    <span aria-hidden="true">☆</span>
+                    <span aria-hidden="true">☆</span>
+                    <span aria-hidden="true">☆</span>
+                </div>
+                <p class="description"></p>
+            </div>
+        </section>
+
+        <section id="details" aria-labelledby="details-heading">
+            <h3 id="details-heading">Details</h3>
+            <p><strong>Prep Time:</strong> <span id="prepTime"></span></p>
+            <p><strong>Cook Time:</strong> <span id="cookTime"></span></p>
+            <p><strong>Yield:</strong> <span id="yield"></span></p>
+
+            <h3>Ingredients</h3>
+            <ul id="ingredients"></ul>
+
+            <h3>Instructions</h3>
+            <ol id="instructions"></ol>
+
+            <p><a href="index.html">← Back to recipes</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <a style="font-size: 0.6em;" href="https://www.flaticon.com/free-icons/recipe" title="recipe icons">Recipe icons created by Freepik - Flaticon</a>
+        <div class="social">
+            <a href="#"><img src="images/instagram_icon.svg" alt="instagram icon"></a>
+            <a href="#"><img src="images/youtube_icon.svg" alt="youtube icon"></a>
+            <a href="#"><img src="images/pinterest_icon.svg" alt="pinterest icon"></a>
+        </div>
+    </footer>
+</body>
+</html>

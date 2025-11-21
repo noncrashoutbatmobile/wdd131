@@ -13,7 +13,7 @@
     <meta property="og:url" content="URL of the page">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="recipes.css">
-    <script src="main.js" defer></script>
+    <script src="main.js" type="module"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=The+Girl+Next+Door&display=swap" rel="stylesheet">
@@ -35,9 +35,14 @@
     <img src="images/search.svg"  class="search-icon" alt="search icon">
   </button>
 </div>
+        
     </header>
     <main class="container">
-<section id="maincontent" class="recipe">
+      <div class="cookmode-container">
+            <label class="cookmode-label" for="cook-mode-toggle">Cook Mode</label>
+            <input id="cook-mode-toggle" type="checkbox" aria-label="Toggle cook mode" />
+        </div>
+<!-- <section id="maincontent" class="recipe">
   <img src="./images/chocolate-chip-cookies.jpg" alt="Chocolate chip cookies with coconut" />
   <div class="recipe-content">
   <p class="tags">Dessert</p>
@@ -51,7 +56,7 @@
   </div>
     <p class="description">Delicious soft chocolate chip cookies with coconut.</p>
 </div> 
-</section>
+</section> -->
   <!-- <p><strong>Prep Time:</strong> 15 min</p>
   <p><strong>Cook Time:</strong> 11 min</p>
   <p><strong>Yield:</strong> 8 dozen</p>
