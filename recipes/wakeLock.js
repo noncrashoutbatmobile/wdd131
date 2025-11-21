@@ -78,23 +78,47 @@ async function ensureNoSleep() {
 
 export async function initCookMode() {
   const checkbox = document.getElementById('cook-mode-toggle');
+  const statusEl = document.getElementById('cook-mode-status');
   if (!checkbox) return;
 
   // restore saved state
   const saved = localStorage.getItem('cookMode') === 'true';
   checkbox.checked = saved;
 
+  // helper to set non-blocking status messages
+  function setStatus(message, type = '') {
+    if (!statusEl) {
+      // nothing to show, fallback to console
+      if (type === 'error') console.error(message);
+      else console.info(message);
+      return;
+    }
+    statusEl.textContent = message;
+    statusEl.classList.remove('active', 'error');
+    if (type) statusEl.classList.add(type);
+    // clear status after 5s for non-active messages
+    if (type !== 'active') {
+      setTimeout(() => {
+        if (statusEl) statusEl.textContent = '';
+      }, 5000);
+    }
+  }
+
   // if saved active, try to acquire lock or fallback
   if (saved) {
     if (isSupported) {
-      await requestWakeLock();
+      const ok = await requestWakeLock();
+      if (ok) setStatus('Cook Mode active', 'active');
+      else setStatus('Could not enable Cook Mode (Wake Lock error)', 'error');
     } else {
       try {
         await ensureNoSleep();
         noSleepInstance = new window.NoSleep();
         noSleepInstance.enable();
+        setStatus('Cook Mode active (fallback)', 'active');
       } catch (err) {
         console.warn('NoSleep fallback failed:', err);
+        setStatus('Cook Mode not supported', 'error');
       }
     }
   }
@@ -108,21 +132,52 @@ export async function initCookMode() {
         if (!ok) {
           e.target.checked = false;
           localStorage.setItem('cookMode', 'false');
-          alert('Unable to enable Cook Mode on this browser.');
+          setStatus('Unable to enable Cook Mode on this browser.', 'error');
+        } else {
+          setStatus('Cook Mode active', 'active');
         }
       } else {
         try {
           await ensureNoSleep();
           noSleepInstance = new window.NoSleep();
           noSleepInstance.enable();
+          setStatus('Cook Mode active (fallback)', 'active');
         } catch (err) {
           e.target.checked = false;
           localStorage.setItem('cookMode', 'false');
-          alert('Cook Mode is not supported by this browser.');
+          setStatus('Cook Mode is not supported by this browser.', 'error');
         }
       }
     } else {
       await releaseWakeLock();
+      setStatus('Cook Mode disabled');
+    }
+  });
+
+  // sync across tabs: respond when other tabs change cookMode
+  window.addEventListener('storage', async (ev) => {
+    if (ev.key !== 'cookMode') return;
+    const newVal = ev.newValue === 'true';
+    // update checkbox if different
+    if (checkbox.checked !== newVal) checkbox.checked = newVal;
+    if (newVal) {
+      if (isSupported) {
+        const ok = await requestWakeLock();
+        if (ok) setStatus('Cook Mode active (synced)', 'active');
+        else setStatus('Cook Mode sync failed (Wake Lock error)', 'error');
+      } else {
+        try {
+          await ensureNoSleep();
+          noSleepInstance = new window.NoSleep();
+          noSleepInstance.enable();
+          setStatus('Cook Mode active (fallback, synced)', 'active');
+        } catch (err) {
+          setStatus('Cook Mode not supported (synced)', 'error');
+        }
+      }
+    } else {
+      await releaseWakeLock();
+      setStatus('Cook Mode disabled (synced)');
     }
   });
 

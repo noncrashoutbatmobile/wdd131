@@ -21,18 +21,27 @@ function renderRating(container, rating) {
   container.innerHTML = Array.from({length:5}, (_,i) => i < safeRating ? '<span aria-hidden="true">★</span>' : '<span aria-hidden="true">☆</span>').join('');
 }
 
-function renderRecipeDetail(recipe) {
-  const img = document.querySelector('#maincontent img');
-  const tags = document.querySelector('#maincontent .tags');
-  const title = document.querySelector('#maincontent h2');
-  const ratingContainer = document.querySelector('#maincontent .rating');
-  const desc = document.querySelector('#maincontent .description');
+function renderRecipeDetail(recipe, index) {
+  const section = document.getElementById('maincontent');
+  const img = section.querySelector('img');
+  const tags = section.querySelector('.tags');
+  const title = section.querySelector('h2');
+  const ratingContainer = section.querySelector('.rating');
+  const desc = section.querySelector('.description');
+
+  // Assign accessible ids and roles
+  const titleId = `recipe-title-detail-${index}`;
+  const descId = `recipe-desc-detail-${index}`;
+  section.setAttribute('role', 'article');
+  section.setAttribute('aria-labelledby', titleId);
 
   img.src = recipe.image || './images/default.jpg';
   img.alt = recipe.name || 'Recipe image';
   tags.textContent = Array.isArray(recipe.tags) ? recipe.tags.join(', ') : (recipe.tags || '');
+  title.id = titleId;
   title.textContent = recipe.name || '';
   renderRating(ratingContainer, recipe.rating || 0);
+  desc.id = descId;
   desc.textContent = recipe.description || '';
 
   document.getElementById('prepTime').textContent = recipe.prepTime || '';
@@ -85,7 +94,7 @@ function init() {
   }
 
   const recipe = recipes[idx];
-  renderRecipeDetail(recipe);
+  renderRecipeDetail(recipe, idx);
   focusTitle();
   try {
     initCookMode();

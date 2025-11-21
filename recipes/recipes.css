@@ -151,6 +151,22 @@ header img {
   opacity: 0.6;
 }
 
+.cookmode-status {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  color: #444;
+}
+
+.cookmode-status.active {
+  color: #0b6623; /* green */
+  font-weight: 700;
+}
+
+.cookmode-status.error {
+  color: #a60000; /* red */
+  font-weight: 700;
+}
+
 .recipe {
     display: flex;
     flex-direction: column;

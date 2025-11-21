@@ -21,13 +21,15 @@ function getRandomListEntry(list) {
 function recipeTemplate(recipe, index) {
     // Produce the same structure + classes used by the static HTML
     const tagsText = Array.isArray(recipe.tags) ? recipe.tags.join(', ') : (recipe.tags || '');
-        return `<section id="maincontent" class="recipe">
+        const titleId = `recipe-title-${index}`;
+        const descId = `recipe-desc-${index}`;
+        return `<section id="maincontent" class="recipe" role="article" aria-labelledby="${titleId}">
     <a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}"><img src="${escapeHtml(recipe.image || './images/default.jpg')}" alt="${escapeHtml(recipe.name || '404: Image Not Found')}" /></a>
     <div class="recipe-content">
         <p class="tags">${escapeHtml(tagsText)}</p>
-        <h2><a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}">${escapeHtml(recipe.name || '404: Name Not Found')}</a></h2>
+        <h2 id="${titleId}"><a href="recipe.html?id=${index}" aria-label="View recipe: ${escapeHtml(recipe.name || 'Recipe')}">${escapeHtml(recipe.name || '404: Name Not Found')}</a></h2>
         ${ratingTemplate(recipe.rating || 0)}
-        <p class="description">${escapeHtml(recipe.description || '404: Description Not Found')}</p>
+        <p id="${descId}" class="description">${escapeHtml(recipe.description || '404: Description Not Found')}</p>
     </div>
 </section>`;
 }
