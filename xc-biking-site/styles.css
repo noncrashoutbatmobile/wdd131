@@ -22,13 +22,13 @@ body {
   padding: 0;
   font-family: var(--paragraph-font);
   color: var(--primary-color);
-  background: url('images/website-background4k.webp') center bottom / cover no-repeat fixed;
+  background: url('images/website-background-dark.webp') center bottom / cover no-repeat fixed;
   transition: background-color 0.5s ease, color 0.5s ease, background-image 1s ease-in;
 }
 
 body.light-mode {
   color: var(--accent2-color);
-  background-image: url('images/website-background4k-light.webp');
+  background-image: url('images/website-background-light.webp');
 }
 
 /* Headings */

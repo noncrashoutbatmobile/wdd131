@@ -1,7 +1,6 @@
 // --------------------
 // Dark / Light Toggle (with saved preference)
 // --------------------
-
 const navbarList = document.querySelector('.navbar-nav');
 
 if (navbarList) {
