@@ -101,3 +101,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const gallery = document.querySelector('.gallery-grid');
+  if (!gallery) return;
+
+  const galleryItems = Array.from(gallery.children);
+
+  // Separate videos and images
+  const videos = galleryItems.filter(item => item.querySelector('iframe') || item.querySelector('video'));
+  const images = galleryItems.filter(item => !item.querySelector('iframe') && !item.querySelector('video'));
+
+  // Clear current gallery
+  gallery.innerHTML = '';
+
+  // Append videos first, then images
+  [...videos, ...images].forEach(item => gallery.appendChild(item));
+});
