@@ -315,3 +315,37 @@ body.light-mode footer a:hover { color: var(--primary-color); }
 /* Utility             */
 /* -------------------- */
 video, img { max-width: 100%; height: auto; display: block; }
+
+
+/* -------------------- */
+/* Site Hero (Index)    */
+/* -------------------- */
+.site-hero {
+  padding: 3rem 1rem;
+  text-align: center;
+  transition: color 0.5s ease;
+}
+
+.site-hero h1.display-4 {
+  font-family: var(--heading-font);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary-color); /* gold in dark mode */
+}
+
+.site-hero .subtitle {
+  font-family: var(--paragraph-font);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--primary-color); /* gold in dark mode */
+}
+
+/* Light mode overrides */
+body.light-mode .site-hero h1.display-4,
+body.light-mode .site-hero h1.display-4 {
+  color: var(--accent1-color); /* emerald in light mode */
+}
+body.light-mode .site-hero .subtitle {
+  color: var(--accent2-color); /* black in light mode */
+}
