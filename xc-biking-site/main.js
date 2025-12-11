@@ -28,8 +28,10 @@ if (navbarList) {
   function updateToggleContent() {
     const isLight = document.body.classList.contains('light-mode');
     toggleLink.innerHTML = isLight
-      ? `<img src="${darkIcon}" style="width:24px;height:24px;"> Toggle Theme`
-      : `<img src="${lightIcon}" style="width:24px;height:24px;"> Toggle Theme`;
+  toggleLink.innerHTML = document.body.classList.contains('light-mode')
+    ? `<img src="${darkIcon}" width="24" height="24" alt="Switch to dark theme"> Toggle Theme`
+    : `<img src="${lightIcon}" width="24" height="24" alt="Switch to light theme"> Toggle Theme`;
+
   }
 
   updateToggleContent();
@@ -53,6 +55,7 @@ if (navbarList) {
 
 document.addEventListener("DOMContentLoaded", () => {
   const gallery = document.querySelector('.gallery-grid');
+  if (!gallery) return;
 
   gallery.addEventListener('click', e => {
     const card = e.target.closest('.gallery-item');

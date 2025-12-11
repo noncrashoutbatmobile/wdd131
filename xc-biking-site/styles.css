@@ -22,13 +22,13 @@ body {
   padding: 0;
   font-family: var(--paragraph-font);
   color: var(--primary-color);
-  background: url('images/website-background4k.png') center bottom / cover no-repeat fixed;
+  background: url('images/website-background4k.webp') center bottom / cover no-repeat fixed;
   transition: background-color 0.5s ease, color 0.5s ease, background-image 1s ease-in;
 }
 
 body.light-mode {
   color: var(--accent2-color);
-  background-image: url('images/website-background4k-light.png');
+  background-image: url('images/website-background4k-light.webp');
 }
 
 /* Headings */
@@ -230,6 +230,21 @@ body.light-mode .navbar-nav .nav-link:hover { color: var(--accent1-color) !impor
   .navbar-nav { flex-direction: column; gap: 0.5rem; align-items: center; text-align: center; }
 }
 
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+
 /* -------------------- */
 /* Video Viewer Modal    */
 /* -------------------- */
@@ -289,10 +304,12 @@ footer {
   background-color: var(--secondary-color);
   color: #fff;
 }
-footer a { color: #fff; transition: color 0.3s ease; }
+footer a { color: #fff; transition: color 0.3s ease; text-decoration: none; }
+
 footer a:hover { color: var(--primary-color); }
-body.light-mode footer { background-color: var(--secondary-color); color: #000; }
-body.light-mode footer a:hover { color: var(--accent1-color); }
+body.light-mode footer { background-color: var(--secondary-color); color: var(--accent1-color); }
+body.light-mode footer a { color: var(--accent1-color); }
+body.light-mode footer a:hover { color: var(--primary-color); }
 
 /* -------------------- */
 /* Utility             */
